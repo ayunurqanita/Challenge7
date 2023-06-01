@@ -25,7 +25,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class AuthService {
     @Autowired
     AuthenticationManager authenticationManager;
@@ -63,6 +62,7 @@ public class AuthService {
                 jwtCookie.getValue());
     }
 
+    @Transactional
     public void registerUser(SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             throw new IllegalArgumentException("Error: Username is already taken!");

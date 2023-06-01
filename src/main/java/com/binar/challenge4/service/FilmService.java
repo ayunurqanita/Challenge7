@@ -17,7 +17,6 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-@Transactional
 public class FilmService {
     @Autowired
     private FilmRepository filmRepository;
@@ -49,6 +48,7 @@ public class FilmService {
         return filmRepository.findFilmByIsPremiered(isPremiered);
     }
 
+    @Transactional
     public Film updateFilm(Long id, Film film) {
         Film film1 = filmRepository.findById(id).get();
         film1.setFilmName(film.getFilmName());
@@ -56,22 +56,12 @@ public class FilmService {
         log.info("Update Data Film By Id Success");
         return filmRepository.save(film1);
     }
+    @Transactional
     public void deleteFilmById(Long id) {
         log.info("Delete Data Film By Id Success");
         filmRepository.deleteById(id);
     }
 
-//    @Scheduled(cron = "0 0 8 * * ?") // Contoh penjadwalan setiap hari jam 08:00
-//    public void updatePremieredStatus() {
-//        // Kode logika untuk memperbarui status film yang sedang tayang
-//        List<Film> films = filmRepository.findFilmByIsPremiered(true);
-//        for (Film film : films) {
-//            // Lakukan pembaruan status film sesuai dengan kondisi yang diinginkan
-//            film.setIsPremiered(false); // Contoh: Mengubah status film menjadi tidak sedang tayang
-//            filmRepository.save(film);
-//        }
-//    }
-//
     }
 
 

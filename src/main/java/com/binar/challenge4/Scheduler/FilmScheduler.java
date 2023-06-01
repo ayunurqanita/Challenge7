@@ -18,17 +18,13 @@ import org.springframework.stereotype.Component;
 public class FilmScheduler {
 
     @Autowired
-    private FilmService filmService;
-
-    @Autowired
     private  FilmRepository filmRepository;
 
     @Autowired
     private FilmScheduleRepository filmScheduleRepository;
 
     // untuk memperbarui status film
-    //@Scheduled(cron = "0 0 0 * * *") // Menjalankan pada pukul 00:00 setiap hari
-    @Scheduled(cron = "0/10 44-45 12 * * *")
+    @Scheduled(cron = "0 0 8 * * *")
     public void updateFilmStatus() {
         // Ambil daftar film dengan status isPremiered = false
         List<Film> films = filmRepository.findFilmByIsPremiered(false);
@@ -45,7 +41,7 @@ public class FilmScheduler {
         System.out.println("==================================================");
         }
 
-    @Scheduled(cron = "0 * * * * *") // Menjalankan setiap menit
+    @Scheduled(cron = "0 0 8 * * *") // Menjalankan pada pukul 08:00 setiap hari
     public void displayCurrentFilmSchedule() {
         LocalDate currentDate = LocalDate.now();
         LocalTime currentTime = LocalTime.now();

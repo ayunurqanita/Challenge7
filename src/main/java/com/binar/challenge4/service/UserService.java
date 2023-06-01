@@ -14,7 +14,6 @@ import java.util.Optional;
 
     @Service
     @Slf4j
-    @Transactional
     public class UserService {
         @Autowired
         UserRepository userRepository;
@@ -31,11 +30,13 @@ import java.util.Optional;
             return result;
         }
 
+        @Transactional
         public Optional<User> getUserById(Long id) {
             log.info("Get Data User By Id Success");
             return userRepository.findById(id);
         }
 
+        @Transactional
         public User updateUser(Long id, User user) {
             User user1 = userRepository.findById(id).get();
             user1.setUsername(user.getUsername());
@@ -45,6 +46,7 @@ import java.util.Optional;
             return userRepository.save(user1);
         }
 
+        @Transactional
         public void deleteUser(Long id) {
             userRepository.deleteById(id);
         }

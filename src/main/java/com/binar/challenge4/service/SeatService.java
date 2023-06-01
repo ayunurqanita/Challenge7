@@ -23,6 +23,7 @@ public class SeatService {
 
     }
 
+    @Transactional
     public Seat addSeats(String seatNumber, boolean isAvailable, String studioName) throws Exception {
         Seat seats = seatRepository.findSeatsBySeatNumberAndStudio(seatNumber, studioName);
         if(seats != null){

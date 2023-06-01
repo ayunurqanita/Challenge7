@@ -20,7 +20,6 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-@Transactional
 @Component
 public class ScheduleService {
     @Autowired
@@ -28,6 +27,7 @@ public class ScheduleService {
     @Autowired
     private FilmRepository filmRepository;
 
+    @Transactional
     public Schedule addSchedule(ScheduleDTO schedule, Long filmCode){
         ObjectMapper mapperObj = new ObjectMapper();
         mapperObj.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
